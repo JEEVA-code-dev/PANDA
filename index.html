@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:black;
+    overflow-x:hidden;
+    text-align:center;
+    color:white;
+}
+
+/* ---------------- START SCREEN ---------------- */
+.start-screen{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#startBtn{
+    padding:20px 40px;
+    font-size:22px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff4f81;
+    cursor:pointer;
+    box-shadow:0 0 30px #ff4f81;
+}
+
+/* ---------------- MAIN ---------------- */
+.main{
+    display:none;
+    min-height:100vh;
+    padding:20px;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    position:relative;
+}
+
+/* ---------------- RAINBOW TEXT ---------------- */
+.rainbow{
+    font-size:28px;
+    font-weight:bold;
+    animation:rainbow 4s linear infinite;
+}
+@keyframes rainbow{
+    0%{color:red}
+    20%{color:orange}
+    40%{color:yellow}
+    60%{color:lime}
+    80%{color:cyan}
+    100%{color:violet}
+}
+
+/* BEATING HEART */
+.beat-heart{
+    font-size:100px;
+    margin-top:15px;
+    display:inline-block;
+    transform-origin:center;
+    animation: heartbeat 1s infinite;
+    text-shadow:0 0 20px #ff4f81;
+}
+
+@keyframes heartbeat{
+    0%{transform:scale(1);}
+    25%{transform:scale(1.2);}
+    40%{transform:scale(1);}
+    60%{transform:scale(1.3);}
+    100%{transform:scale(1);}
+}
+
+/* ---------------- FALLING HEARTS ---------------- */
+.fall{
+    position:fixed;
+    top:-20px;
+    font-size:20px;
+    animation:fall 6s linear infinite;
+}
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+/* ---------------- BURST HEART ---------------- */
+.small-heart{
+    position:fixed;
+    top:50%;
+    left:50%;
+    animation:burst 2s forwards;
+}
+@keyframes burst{
+    to{
+        transform:translate(var(--x),var(--y));
+        opacity:0;
+    }
+}
+
+/* ---------------- SPARKLES ---------------- */
+.sparkle{
+    position:fixed;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 2s infinite alternate;
+}
+@keyframes twinkle{
+    from{opacity:.2}
+    to{opacity:1}
+}
+
+/* ---------------- photo glow ---------------- */
+.photo-row{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.photo-row img{
+    width:200px;
+    border-radius:15px;
+    display:block;
+    animation: glow 2s infinite alternate;
+}
+
+
+
+/* ---------------- SLIDESHOW ---------------- */
+.carousel{
+    width:260px;
+    height:260px;
+    margin:auto;
+    overflow:hidden;
+    border-radius:20px;
+    margin-top:20px;
+}
+.carousel img{
+    width:100%;
+    display:none;
+}
+
+/* ---------------- INSTAGRAM GRID ---------------- */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
+    margin-top:20px;
+}
+.grid img{
+    width:100%;
+    border-radius:10px;
+}
+
+/* ---------------- TYPING ---------------- */
+.typing{
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText{
+    from{ text-shadow:0 0 10px #fff; }
+    to{ text-shadow:0 0 25px #ff4f81; }
+}
+
+/* ---------------- POPUP ---------------- */
+.popup{
+    position: fixed;
+
+    bottom: 90px;   /* moved little up */
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: white;
+    color: #ff4f81;
+
+    padding: 18px 35px;
+
+    font-size: 26px;     /* bigger font */
+    font-weight: bold;
+
+    border-radius: 40px;
+
+    box-shadow: 0 0 25px #ff4f81;  /* glowing */
+
+    display: block;   /* show always (change from none) */
+
+    animation: popupBounce 1s infinite alternate;
+}
+
+/* glowing text */
+.typing{
+    animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText{
+    from{ text-shadow:0 0 10px #fff; }
+    to{ text-shadow:0 0 30px #ff4f81; }
+}
+
+/* bounce effect */
+@keyframes popupBounce{
+    from{ transform: translateX(-50%) translateY(0); }
+    to{ transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ---------------- beat-heart ---------------- */
+.beat-heart{
+    font-size:100px;
+    margin-top:15px;
+    animation: heartbeat 1s infinite;
+    text-shadow:0 0 20px #ff4f81;
+}
+
+@keyframes heartbeat{
+    0%{transform:scale(1);}
+    25%{transform:scale(1.2);}
+    40%{transform:scale(1);}
+    60%{transform:scale(1.3);}
+    100%{transform:scale(1);}
+}
+/* ---------------- love-img ---------------- */
+.love-img{
+    width:160px;
+    height:160px;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+    margin:10px auto;
+    box-shadow:0 0 25px #ff4f81;
+}
+
+
+/* ---------------- FINAL LINE ---------------- */
+.final-line{
+    margin-top:25px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="music.mp3">
+</audio>
+
+<div class="start-screen" id="start">
+<button id="startBtn">Click Here Panda😍❤️ 💌</button>
+</div>
+
+<div class="big-heart" id="bigHeart">❤️</div>
+
+<div class="main" id="main">
+
+<h1>To My Beautiful GIRL❤️Panda❤️ Kooti❤️</h1>
+
+<img src="love.jpg" class="love-img">
+
+<div class="typing" id="typing"></div>
+
+<div class="blast" id="blast">❤️</div>
+
+<div class="photo-row" id="photos">
+<img src="herphoto1.jpg">
+<img src="herphoto2.jpg">
+<img src="herphoto3.jpg">
+<img src="herphoto4.jpg">
+</div>
+
+<div class="message" id="message"> I am truly sorry kane... if I hurt you 🥺❤️<br> ninge kopa barstini jaglanu madtini ella madtini 
+beacause yr my favt PANDA GN❤️ (RAMYASHREE GN) nange inge kariyoke ista ninge henge ansutto gottila nin jothe kopa ene idru and bandru 
+adu just few house aste gottila yake anta nin andre ista "LOVE YOU SWEET HEART❤️😘😘".<br><br> PANDA❤️ PANDA❤️ PANDA❤️ </div>
+
+<div class="final-line">
+Made with ❤️ Ninna Pritiya Jeeva❤️😘😘 LOVE YOU Panda❤️😘😘!!!!!!!!!!
+</div>
+<div class="beat-heart">❤️</div>
+<div class="popup" id="popup">
+💝 Surprise!PANDA❤️ I Love You Chinna 💝
+</div>
+
+<script>
+const text="You are the best thing that ever happened to me Kooti ❤️";
+let i=0;
+
+function typeEffect(){
+ if(i<text.length){
+   typing.innerHTML+=text.charAt(i);
+   i++;
+   setTimeout(typeEffect,40);
+ }
+}
+
+/* burst hearts */
+function burst(){
+ for(let j=0;j<20;j++){
+   let h=document.createElement("div");
+   h.className="small-heart";
+   h.innerHTML="💞";
+   h.style.setProperty('--x',(Math.random()*600-300)+"px");
+   h.style.setProperty('--y',(Math.random()*600-300)+"px");
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),2000);
+ }
+}
+
+/* falling hearts */
+setInterval(()=>{
+ let f=document.createElement("div");
+ f.className="fall";
+ f.innerHTML="💖";
+ f.style.left=Math.random()*100+"vw";
+ document.body.appendChild(f);
+ setTimeout(()=>f.remove(),6000);
+},300);
+
+/* sparkles */
+for(let i=0;i<60;i++){
+ let s=document.createElement("div");
+ s.className="sparkle";
+ s.style.left=Math.random()*100+"vw";
+ s.style.top=Math.random()*100+"vh";
+ document.body.appendChild(s);
+}
+
+/* slideshow */
+let slides=document.querySelectorAll(".carousel img");
+let index=0;
+setInterval(()=>{
+ slides.forEach(img=>img.style.display="none");
+ slides[index].style.display="block";
+ index=(index+1)%slides.length;
+},2000);
+
+/* fireworks */
+setInterval(()=>{
+ burst();
+},3000);
+
+function startLove(){
+ start.style.display="none";
+ main.style.display="block";
+ bigHeart.classList.add("show");
+ bgMusic.play().catch(()=>{});
+ typeEffect();
+ burst();
+
+ setTimeout(()=>{
+   popup.style.display="block";
+ },5000);
+}
+
+startBtn.onclick=startLove;
+</script>
+
+</body>
+</html>
